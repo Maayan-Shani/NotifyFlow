@@ -798,7 +798,14 @@ Open the local Vite URL shown in the terminal.
 
 Open the Android project in Android Studio.
 
-Update the demo backend URL in `MainActivity.kt` according to your environment:
+Create or update the local backend URL configuration:
+
+```properties
+android/local.properties
+NOTIFYFLOW_BASE_URL=http://10.0.2.2:3000/
+```
+
+Use the relevant backend URL according to your environment:
 
 | Environment | Base URL |
 |---|---|
@@ -811,7 +818,7 @@ Run the app and use the demo controls:
 - Select user: `user_1`, `user_2`, `user_3`
 - Select country: `IL`, `US`, `FR`
 - Navigate between Home, Profile and Cart
-- Use Reset Demo State for testing max views and session behavior
+- Use `Reset Demo State` for testing max views and session behavior
 
 ---
 
