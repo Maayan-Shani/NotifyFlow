@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/nf_demo_background"
+    android:layoutDirection="ltr"
+    android:textDirection="ltr">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/nf_space_screen"
+        android:layoutDirection="ltr"
+        android:textDirection="ltr">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:textSize="@dimen/nf_text_size_screen_title"
+            android:textStyle="bold"
+            android:textColor="@color/nf_text_primary"
+            android:gravity="left"
+            android:layout_marginBottom="@dimen/nf_space_xs"
+            android:layoutDirection="ltr"
+            android:textDirection="ltr" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_back_to_the_demo_app"
+            android:textSize="@dimen/nf_text_size_body"
+            android:textColor="@color/nf_text_secondary"
+            android:gravity="left"
+            android:layout_marginBottom="@dimen/nf_space_4xl"
+            android:layoutDirection="ltr"
+            android:textDirection="ltr" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/nf_space_3xl"
+            app:cardCornerRadius="@dimen/nf_space_4xl"
+            app:cardElevation="@dimen/nf_space_xxs"
+            app:strokeColor="@color/nf_primary_light"
+            app:strokeWidth="@dimen/nf_card_stroke_width"
+            app:cardBackgroundColor="@color/nf_surface">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/nf_space_4xl"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/today_s_updates"
+                    android:textSize="@dimen/nf_text_size_card_title"
+                    android:textStyle="bold"
+                    android:textColor="@color/nf_text_primary"
+                    android:layout_marginBottom="@dimen/nf_space_sm"
+                    android:layoutDirection="ltr"
+                    android:textDirection="ltr" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notifyflow_can_show_personalized_in_app_messages_on_this_screen_based_on_targeting_rules"
+                    android:textSize="@dimen/nf_text_size_body"
+                    android:textColor="@color/nf_text_secondary"
+                    android:lineSpacingExtra="@dimen/nf_space_xxs"
+                    android:layoutDirection="ltr"
+                    android:textDirection="ltr" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/nf_space_3xl"
+            android:layoutDirection="ltr"
+            android:textDirection="ltr">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/nf_space_sm"
+                app:cardCornerRadius="@dimen/nf_space_3xl"
+                app:cardElevation="@dimen/nf_card_elevation_small"
+                app:cardBackgroundColor="@color/nf_surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/nf_space_3xl"
+                    android:gravity="center"
+                    android:layoutDirection="ltr"
+                    android:textDirection="ltr">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alerts"
+                        android:textSize="@dimen/nf_text_size_badge"
+                        android:textStyle="bold"
+                        android:textColor="@color/nf_primary"
+                        android:layout_marginBottom="@dimen/nf_space_sm"
+                        android:layoutDirection="ltr"
+                        android:textDirection="ltr" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/smart_alerts"
+                        android:textSize="@dimen/nf_text_size_body_small"
+                        android:textStyle="bold"
+                        android:textColor="@color/nf_text_primary" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/nf_space_sm"
+                app:cardCornerRadius="@dimen/nf_space_3xl"
+                app:cardElevation="@dimen/nf_card_elevation_small"
+                app:cardBackgroundColor="@color/nf_surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/nf_space_3xl"
+                    android:gravity="center"
+                    android:layoutDirection="ltr"
+                    android:textDirection="ltr">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/target"
+                        android:textSize="@dimen/nf_text_size_badge"
+                        android:textStyle="bold"
+                        android:textColor="@color/nf_primary"
+                        android:layout_marginBottom="@dimen/nf_space_sm"
+                        android:layoutDirection="ltr"
+                        android:textDirection="ltr" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/targeted"
+                        android:textSize="@dimen/nf_text_size_body_small"
+                        android:textStyle="bold"
+                        android:textColor="@color/nf_text_primary" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_screen_key_home_screen"
+            android:textSize="@dimen/nf_text_size_badge"
+            android:textColor="@color/nf_primary"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+            android:textDirection="ltr" />
+
+    </LinearLayout>
+
+</ScrollView>

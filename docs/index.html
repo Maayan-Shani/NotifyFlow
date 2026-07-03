@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NotifyFlow Documentation</title>
+  <meta name="description" content="NotifyFlow Android In-App Notifications SDK documentation." />
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#F3E8FF",
+        primaryTextColor: "#111827",
+        primaryBorderColor: "#8B5CF6",
+        lineColor: "#6B7280",
+        secondaryColor: "#EEF2FF",
+        tertiaryColor: "#F9FAFB"
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <header class="hero">
+    <nav class="navbar">
+      <a class="brand" href="#top" aria-label="NotifyFlow home">
+        <span class="brand-icon">🔔</span>
+        <span>NotifyFlow</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#get-started">Get Started</a>
+        <a href="#examples">Examples</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#delivery-efficiency">Efficiency</a>
+        <a href="#api-docs">API Docs</a>
+      </div>
+    </nav>
+
+    <section class="hero-content" id="top">
+      <div>
+        <p class="eyebrow">Android In-App Notifications SDK</p>
+        <h1>In-App notifications for Android apps</h1>
+        <p class="hero-text">
+          NotifyFlow lets Android apps display dynamic Popup and Banner messages without releasing a new app version.
+          Campaigns are configured from a web portal and delivered through a backend with server-side targeting,
+          A/B Testing, efficient analytics and cache fallback.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-button" href="#get-started">Get Started</a>
+          <a class="secondary-button" href="#sequence">View SDK Flow</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <span class="card-label">Core SDK Flow</span>
+        <h3>Portal → Backend → SDK → Analytics</h3>
+        <p>
+          Admins create targeted campaigns. The backend returns only relevant campaigns, the Android SDK
+          displays them and reports impressions and clicks to aggregated analytics.
+        </p>
+      </aside>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" id="overview">
+      <div class="section-title">
+        <span>01</span>
+        <div>
+          <h2>Overview</h2>
+          <p>
+            NotifyFlow is a complete SDK ecosystem: Android library, demo app, backend server,
+            MongoDB database and React admin portal.
+          </p>
+        </div>
+      </div>
+
+      <div class="overview-grid">
+        <article class="info-card">
+          <h3>Android SDK</h3>
+          <p>Reusable Kotlin SDK module for loading, filtering and displaying in-app notifications.</p>
+        </article>
+
+        <article class="info-card">
+          <h3>Admin Portal</h3>
+          <p>React dashboard for creating messages, configuring targeting and viewing analytics.</p>
+        </article>
+
+        <article class="info-card">
+          <h3>Backend API</h3>
+          <p>Node.js and Express REST API that connects the portal, SDK and MongoDB Atlas with server-side filtering.</p>
+        </article>
+
+        <article class="info-card">
+          <h3>Analytics</h3>
+          <p>Efficient aggregated counters in MessageStats for impressions, clicks, CTR, country and variant breakdowns.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="use-cases">
+      <div class="section-title">
+        <span>02</span>
+        <div>
+          <h2>Who Can Use NotifyFlow?</h2>
+          <p>
+            NotifyFlow is useful for Android apps that need to communicate with users after the app is already released.
+          </p>
+        </div>
+      </div>
+
+      <div class="use-case-grid">
+        <article>
+          <h3>E-commerce Apps</h3>
+          <p>Show promotions, discounts, free shipping campaigns and cart reminders.</p>
+        </article>
+
+        <article>
+          <h3>Productivity Apps</h3>
+          <p>Announce new features, onboarding tips and important workflow updates.</p>
+        </article>
+
+        <article>
+          <h3>Education Apps</h3>
+          <p>Display course announcements, reminders, exam updates and targeted messages by region.</p>
+        </article>
+
+        <article>
+          <h3>Subscription Apps</h3>
+          <p>Test upgrade prompts, feature announcements and benefit messages using A/B Testing.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="video">
+      <div class="section-title">
+        <span>03</span>
+        <div>
+          <h2>Demo Video</h2>
+          <p>Add a demo video or a short promotional video showing how NotifyFlow works.</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-placeholder">
+          <span>▶</span>
+        </div>
+
+        <div>
+          <h3>Recommended Video Flow</h3>
+          <ol>
+            <li>Open the portal and create a targeted message.</li>
+            <li>Run the Android demo app and display the notification.</li>
+            <li>Click the message action button.</li>
+            <li>Return to the portal and show updated analytics.</li>
+            <li>Open the A/B Testing screen and compare variants.</li>
+          </ol>
+
+          <p class="muted">
+            Replace this placeholder with a YouTube, Drive or GitHub-hosted video link.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="screenshots">
+      <div class="section-title">
+        <span>04</span>
+        <div>
+          <h2>Screenshots</h2>
+        </div>
+      </div>
+
+      <h3 class="subheading">Portal Screens</h3>
+
+      <div class="screenshot-grid two">
+        <figure>
+          <img src="screenshots/portal-messages.png" alt="Messages Management Screen" />
+          <figcaption>Messages Management</figcaption>
+        </figure>
+
+        <figure>
+          <img src="screenshots/portal-analytics.png" alt="Analytics Dashboard" />
+          <figcaption>Analytics Dashboard</figcaption>
+        </figure>
+
+        <figure>
+          <img src="screenshots/portal-analytics2.png" alt="Analytics Performance Table" />
+          <figcaption>Analytics Performance Table</figcaption>
+        </figure>
+
+        <figure>
+          <img src="screenshots/portal-ab-testing.png" alt="A/B Testing Dashboard" />
+          <figcaption>A/B Testing Dashboard</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="subheading">Analytics Details</h3>
+
+      <div class="screenshot-grid detail-cards">
+        <figure class="image-card compact-tall">
+          <img src="screenshots/analytics-details.png" alt="Analytics Details Overview" />
+          <figcaption>Details Overview</figcaption>
+          <p>Impressions, clicks, CTR and variant summary.</p>
+        </figure>
+
+        <figure class="image-card compact-tall">
+          <img src="screenshots/analytics-details2.png" alt="Message Targeting Rules" />
+          <figcaption>Message Targeting</figcaption>
+          <p>Screen, country, Android version, date range and max views.</p>
+        </figure>
+
+        <figure class="image-card compact-wide">
+          <img src="screenshots/analytics-details3.png" alt="Analytics Performance Table" />
+          <figcaption>Performance Table</figcaption>
+          <p>Aggregated results per message from MessageStats counters.</p>
+        </figure>
+      </div>
+
+      <h3 class="subheading">A/B Testing Details</h3>
+
+      <div class="single-image compact-hero-image">
+        <figure class="image-card">
+          <img src="screenshots/ab-testing-details-graph.png" alt="A/B Testing Details Graph" />
+          <figcaption>Variant A vs Variant B Performance Graph</figcaption>
+          <p>Compare impressions, clicks and CTR between Variant A and Variant B.</p>
+        </figure>
+      </div>
+
+      <h3 class="subheading">SDK Display Screens</h3>
+
+      <div class="sdk-display-grid">
+        <figure class="phone-shot-card">
+          <img
+            class="phone-shot"
+            src="screenshots/android-popup.png"
+            alt="Android Popup Notification"
+          />
+          <figcaption>Android Popup</figcaption>
+          <p>Popup notification displayed inside the Android demo app.</p>
+        </figure>
+
+        <figure class="phone-shot-card">
+          <img
+            class="phone-shot"
+            src="screenshots/android-banner.png"
+            alt="Android Banner Notification"
+          />
+          <figcaption>Android Banner</figcaption>
+          <p>Banner notification displayed at the top of the Android screen.</p>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-title">
+        <span>05</span>
+        <div>
+          <h2>Features</h2>
+          <p>The main features are divided between the Android SDK, Admin Portal and Backend.</p>
+        </div>
+      </div>
+
+      <div class="feature-columns">
+        <article>
+          <h3>SDK Features</h3>
+          <ul>
+            <li><strong>Popup and Banner:</strong> two in-app notification formats.</li>
+            <li><strong>Screen targeting:</strong> display messages only on selected logical screens.</li>
+            <li><strong>Country targeting:</strong> show campaigns only for selected countries.</li>
+            <li><strong>Android version targeting:</strong> filter users by SDK version range.</li>
+            <li><strong>Date range:</strong> show campaigns only between start and end dates.</li>
+            <li><strong>Server-filtered delivery:</strong> receive only campaigns that match active status, country, Android version and date range.</li>
+            <li><strong>Reusable Retrofit client:</strong> reuse the same API client while the backend base URL remains unchanged.</li>
+            <li><strong>Max views:</strong> limit how many times each user can see each specific message.</li>
+            <li><strong>Session rule:</strong> avoid repeated notifications on the same screen in the same session.</li>
+            <li><strong>Cache fallback:</strong> load cached messages if the backend is unavailable.</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3>Portal Features</h3>
+          <ul>
+            <li>Create, edit, delete and toggle messages ON/OFF.</li>
+            <li>Configure type, category, targeting, countries and Android versions.</li>
+            <li>Enable or disable A/B Testing per message.</li>
+            <li>View impressions, clicks and CTR in the Analytics dashboard.</li>
+            <li>Compare Variant A and Variant B in the A/B Testing dashboard.</li>
+            <li>Inspect targeting and performance details per message.</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3>Backend Features</h3>
+          <ul>
+            <li>SDK endpoints for message loading, impressions and clicks.</li>
+            <li>Server-side SDK filtering by active status, country, Android version and campaign date range.</li>
+            <li>Portal endpoints for message management and authentication.</li>
+            <li>MongoDB Atlas data storage using Mongoose models.</li>
+            <li>Efficient aggregated MessageStats counters.</li>
+            <li>Analytics breakdown by country and by A/B variant.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="get-started">
+  <div class="section-title">
+    <span>06</span>
+    <div>
+      <h2>Get Started</h2>
+      <p>NotifyFlow is integrated in this project as a local Android library module.</p>
+    </div>
+  </div>
+
+  <div class="code-grid">
+    <div>
+      <h3>SDK Module Location</h3>
+      <p>
+        The NotifyFlow SDK module is located inside the Android project and is used directly by the demo app.
+      </p>
+
+      <pre><code>android/
+├── app/
+│   └── Android demo app
+└── notifyflowlibrary/
+    └── NotifyFlow SDK module</code></pre>
+    </div>
+
+    <div>
+      <h3>Local Module Implementation</h3>
+      <pre><code>// settings.gradle.kts
+include(":notifyflowlibrary")
+
+// app/build.gradle.kts
+dependencies {
+    implementation(project(":notifyflowlibrary"))
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+    <section class="section" id="sdk">
+      <div class="section-title">
+        <span>07</span>
+        <div>
+          <h2>SDK Usage</h2>
+          <p>The host app initializes NotifyFlow, fetches messages and checks each screen.</p>
+        </div>
+      </div>
+
+      <h3 class="subheading">Basic Usage</h3>
+
+      <pre><code>NotifyFlow.init(
+    context = this,
+    apiKey = "demo_api_key",
+    userId = "user_1",
+    country = "IL",
+    baseUrl = "https://your-backend-url.com/"
+    // androidVersion is optional and defaults to Build.VERSION.SDK_INT
+
+)
+
+NotifyFlow.fetchMessages()
+NotifyFlow.checkAndShow(this, "home_screen")</code></pre>
+
+      <h3 class="subheading">Demo Screen Keys</h3>
+
+      <div class="table-wrapper compact">
+        <table>
+          <thead>
+            <tr>
+              <th>Demo Screen</th>
+              <th>Screen Key</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Home</td>
+              <td><code>home_screen</code></td>
+            </tr>
+            <tr>
+              <td>Profile</td>
+              <td><code>profile_screen</code></td>
+            </tr>
+            <tr>
+              <td>Cart</td>
+              <td><code>cart_screen</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="examples">
+      <div class="section-title">
+        <span>08</span>
+        <div>
+          <h2>Examples</h2>
+          <p>Short JSON examples of campaign messages, variants and analytics events used by NotifyFlow.</p>
+        </div>
+      </div>
+
+      <div class="example-grid">
+        <article>
+          <h3>Promotion Campaign</h3>
+          <pre><code>{
+  "id": "msg_new_offer",
+  "type": "POPUP",
+  "category": "PROMOTION",
+  "screenName": "home_screen",
+  "countries": ["IL"],
+  "maxViewsPerUser": 3
+}</code></pre>
+        </article>
+
+        <article>
+          <h3>Feature Announcement</h3>
+          <pre><code>{
+  "id": "msg_new_feature",
+  "type": "BANNER",
+  "category": "FEATURE_ANNOUNCEMENT",
+  "screenName": "profile_screen",
+  "countries": ["IL", "US"],
+  "maxViewsPerUser": 3
+}</code></pre>
+        </article>
+
+        <article>
+          <h3>A/B Variant</h3>
+          <pre><code>{
+  "id": "msg_new_offer_var_a",
+  "name": "A",
+  "title": "20% Discount",
+  "body": "Get 20% off your next order",
+  "buttonText": "Buy Now"
+}</code></pre>
+        </article>
+
+        <article>
+          <h3>Analytics Event</h3>
+          <pre><code>{
+  "messageId": "msg_new_offer",
+  "variantId": "msg_new_offer_var_a",
+  "userId": "user_1",
+  "country": "IL",
+  "eventType": "IMPRESSION"
+}</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="other-functions">
+      <div class="section-title">
+        <span>09</span>
+        <div>
+          <h2>SDK Internal Behavior</h2>
+         <p>Internal SDK behavior handled automatically after integration.</p>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Functionality</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Message Filtering</td>
+              <td>Performs final local checks for screen, country, Android version, dates, max views and session rules after server-side filtering.</td>
+            </tr>
+            <tr>
+              <td>Max Views Per Message</td>
+              <td>Prevents repeated display after the user reaches the configured limit for each specific message.</td>
+            </tr>
+            <tr>
+              <td>Multiple Matching Messages</td>
+              <td>If several messages match the same screen, the SDK skips messages that already reached max views and continues to the next eligible message.</td>
+            </tr>
+            <tr>
+              <td>A/B Variant Selection</td>
+              <td>Selects a stable variant based on <code>userId + messageId</code>.</td>
+            </tr>
+            <tr>
+              <td>Impression Tracking</td>
+              <td>Sends an impression event when a message is displayed.</td>
+            </tr>
+            <tr>
+              <td>Click Tracking</td>
+              <td>Sends a click event when the user clicks the notification action.</td>
+            </tr>
+            <tr>
+              <td>Cache Fallback</td>
+              <td>Loads cached messages if the backend request fails.</td>
+            </tr>
+            <tr>
+              <td>Reset Views For Testing</td>
+              <td>Demo/testing helper used to reset local view counters and session state during QA.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="section-title">
+        <span>10</span>
+        <div>
+          <h2>System Architecture</h2>
+          <p>The SDK and portal communicate with the same backend, while data is stored in MongoDB Atlas.</p>
+        </div>
+      </div>
+
+      <div class="diagram-card">
+        <pre class="mermaid">
+flowchart LR
+    Admin[Admin User] --> Portal[React Admin Portal]
+    Portal --> Backend[Node.js / Express Backend]
+
+    AndroidApp[Android Demo App] --> SDK[NotifyFlow Android SDK]
+    SDK --> Backend
+    SDK --> Cache[(SharedPreferences Cache)]
+
+    Backend --> MongoDB[(MongoDB Atlas)]
+
+    MongoDB --> Users[(users)]
+    MongoDB --> Messages[(messages)]
+    MongoDB --> Stats[(messagestats)]
+        </pre>
+      </div>
+
+      <div class="note-box">
+        <strong>Important:</strong>
+        The <code>users</code> collection is used only for admin portal authentication.
+        The Android SDK receives <code>userId</code> from the host app and does not access the users collection directly.
+      </div>
+    </section>
+
+    <section class="section" id="sequence">
+      <div class="section-title">
+        <span>11</span>
+        <div>
+          <h2>SDK Network Sequence</h2>
+          <p>A Firebase Remote Config style flow: initialize, fetch, apply rules, display, report analytics.</p>
+        </div>
+      </div>
+
+      <div class="diagram-card">
+        <pre class="mermaid">
+sequenceDiagram
+    participant App as Android App
+    participant SDK as NotifyFlow SDK
+    participant API as Express Backend
+    participant DB as MongoDB
+    participant Portal as Admin Portal
+
+    App->>SDK: NotifyFlow.init(context, apiKey, userId, country, baseUrl)
+    App->>SDK: NotifyFlow.fetchMessages()
+    SDK->>SDK: Reuse Retrofit API client if baseUrl did not change
+    SDK->>API: GET /sdk/messages?apiKey&userId&country&androidVersion
+    API->>DB: Find active messages by country, Android version and date range
+    DB-->>API: Filtered messages
+    API-->>SDK: Messages JSON
+    SDK->>SDK: Save messages to cache
+
+    App->>SDK: NotifyFlow.checkAndShow(activity, screenName)
+    SDK->>SDK: Validate screen, country, Android version, dates, max views
+    SDK->>SDK: Select A/B variant if configured
+    SDK-->>App: Display POPUP or BANNER
+
+    SDK->>API: POST /sdk/events/impression
+    API->>DB: Increment MessageStats counters
+
+    App->>SDK: User clicks action button
+    SDK->>API: POST /sdk/events/click
+    API->>DB: Increment MessageStats counters
+
+    Portal->>API: GET /api/messages/:id/stats
+    API->>DB: Read aggregated MessageStats
+    DB-->>API: Stats
+    API-->>Portal: Analytics data
+        </pre>
+      </div>
+    </section>
+
+    <section class="section" id="delivery-efficiency">
+      <div class="section-title">
+        <span>12</span>
+        <div>
+          <h2>Message Delivery Efficiency</h2>
+          <p>NotifyFlow reduces unnecessary network requests and filters messages as early as possible.</p>
+        </div>
+      </div>
+
+      <div class="feature-columns">
+        <article>
+          <h3>Controlled Fetching</h3>
+          <p>
+            The SDK fetches messages on app start, when the SDK context changes,
+            or when the app returns to the foreground. Screen navigation uses local checks only.
+          </p>
+        </article>
+
+        <article>
+          <h3>Server-Side Filtering</h3>
+          <p>
+            The backend filters messages by active status, country, Android version and campaign date range
+            before returning them to the SDK.
+          </p>
+        </article>
+
+        <article>
+          <h3>Reusable API Client</h3>
+          <p>
+            The SDK reuses the same Retrofit API client while the base URL remains unchanged.
+            If the base URL changes, a new client is created for the new backend.
+          </p>
+        </article>
+      </div>
+
+      <div class="note-box compact">
+        <strong>Why this matters:</strong>
+        Portal changes are synchronized through controlled refresh points instead of constant polling,
+        while the SDK still keeps cache and local validation as a safety layer.
+      </div>
+    </section>
+
+    <section class="section" id="state">
+      <div class="section-title">
+        <span>13</span>
+        <div>
+          <h2>Message Lifecycle</h2>
+          <p>Each campaign has a lifecycle from creation to display, analytics and expiration.</p>
+        </div>
+      </div>
+
+      <div class="diagram-card">
+        <pre class="mermaid">
+stateDiagram-v2
+    [*] --> Created
+    Created --> Active: Admin turns ON
+    Created --> Inactive: Admin keeps OFF
+
+    Active --> Eligible: Targeting rules match
+    Active --> NotEligible: Targeting rules do not match
+
+    Eligible --> Displayed: SDK shows popup/banner
+    Displayed --> ImpressionTracked: Impression sent
+    ImpressionTracked --> Clicked: User clicks action
+    ImpressionTracked --> Dismissed: User closes message
+
+    Clicked --> ClickTracked: Click sent
+    Dismissed --> SessionBlocked: Same screen already shown in session
+    ClickTracked --> SessionBlocked
+
+    Active --> Expired: End date passed
+    Active --> MaxViewsReached: User reached maxViewsPerUser for this message
+    Active --> Inactive: Admin turns OFF
+
+    Expired --> [*]
+    MaxViewsReached --> [*]
+    Inactive --> [*]
+        </pre>
+      </div>
+    </section>
+
+    <section class="section" id="database">
+      <div class="section-title">
+        <span>14</span>
+        <div>
+          <h2>Database & ERD</h2>
+          <p>Main MongoDB collections and the relationship between messages, variants and aggregated stats.</p>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Collection</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>users</code></td>
+              <td>Admin portal users.</td>
+            </tr>
+            <tr>
+              <td><code>messages</code></td>
+              <td>Notification campaigns, targeting rules and optional variants.</td>
+            </tr>
+            <tr>
+              <td><code>messagestats</code></td>
+              <td>Aggregated counters per message.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="diagram-card">
+        <pre class="mermaid">
+erDiagram
+    USER {
+        string fullName
+        string email
+        string passwordHash
+        date createdAt
+        date updatedAt
+    }
+
+    MESSAGE {
+        string id
+        string projectId
+        string title
+        string body
+        string type
+        string category
+        string screenName
+        boolean active
+        string[] countries
+        number minAndroidVersion
+        number maxAndroidVersion
+        number maxViewsPerUser
+        string startDate
+        string endDate
+        embedded variants
+    }
+
+    MESSAGE_VARIANT {
+        string id
+        string name
+        string title
+        string body
+        string buttonText
+    }
+
+    MESSAGE_STATS {
+        string messageId
+        number impressions
+        number clicks
+        map byCountry
+        map byVariant
+        date createdAt
+        date updatedAt
+    }
+
+    MESSAGE ||--o{ MESSAGE_VARIANT : contains
+    MESSAGE ||--|| MESSAGE_STATS : has
+        </pre>
+      </div>
+    </section>
+
+    <section class="section" id="analytics">
+      <div class="section-title">
+        <span>15</span>
+        <div>
+          <h2>Analytics Efficiency</h2>
+          <p>Analytics are read from aggregated counters instead of scanning raw events.</p>
+        </div>
+      </div>
+
+      <p>
+        Every impression or click updates a <code>MessageStats</code> document.
+        The dashboard reads ready counters directly from MongoDB: impressions, clicks, CTR, by-country data and by-variant data.
+      </p>
+
+      <div class="diagram-card">
+        <pre class="mermaid">
+flowchart LR
+    Event[Impression / Click Event] --> Backend[Backend API]
+    Backend --> UpdateStats[Update MessageStats Counters]
+    UpdateStats --> MongoDB[(MongoDB)]
+    Portal[Analytics Dashboard] --> ReadStats[Read Aggregated Stats]
+    ReadStats --> MongoDB
+        </pre>
+      </div>
+
+      <div class="screenshot-grid two compact-section-images">
+        <figure>
+          <img src="screenshots/portal-analytics.png" alt="Analytics Dashboard" />
+          <figcaption>Analytics Dashboard</figcaption>
+        </figure>
+
+        <figure>
+          <img src="screenshots/portal-analytics2.png" alt="Analytics Performance Table" />
+          <figcaption>Analytics Performance Table</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="ab-testing">
+      <div class="section-title">
+        <span>16</span>
+        <div>
+          <h2>A/B Testing</h2>
+          <p>A/B Testing is optional per message and compares Variant A and Variant B.</p>
+        </div>
+      </div>
+
+      <div class="feature-columns two">
+        <article>
+          <h3>A/B Disabled</h3>
+          <p>The SDK uses the regular message title, body and default button text.</p>
+        </article>
+
+        <article>
+          <h3>A/B Enabled</h3>
+          <p>The SDK selects a stable variant using <code>userId + messageId</code> and tracks analytics per variant.</p>
+        </article>
+      </div>
+
+      <div class="screenshot-grid two compact-section-images">
+        <figure>
+          <img src="screenshots/portal-ab-testing.png" alt="A/B Testing Dashboard" />
+          <figcaption>A/B Testing Dashboard</figcaption>
+        </figure>
+
+        <figure>
+          <img src="screenshots/ab-testing-details-graph.png" alt="A/B Testing Performance Graph" />
+          <figcaption>Variant Performance Graph</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="api-docs">
+      <div class="section-title">
+        <span>17</span>
+        <div>
+          <h2>API Docs</h2>
+          <p>Main SDK and portal endpoints used by NotifyFlow.</p>
+        </div>
+      </div>
+
+      <h3 class="subheading">SDK Endpoints</h3>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GET</td>
+              <td><code>/sdk/messages</code></td>
+              <td>Loads server-filtered messages for the SDK.</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/sdk/events/impression</code></td>
+              <td>Reports an impression.</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/sdk/events/click</code></td>
+              <td>Reports a click.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note-box compact">
+        <strong>SDK message delivery:</strong>
+        The <code>/sdk/messages</code> endpoint filters messages by active status, country,
+        Android version and campaign date range before returning them to the Android SDK.
+        The portal <code>/api/messages</code> endpoint still returns all campaigns so admins can manage
+        active, inactive, scheduled and expired messages.
+      </div>
+
+      <h3 class="subheading">Portal Endpoints</h3>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/messages</code></td>
+              <td>Get all messages.</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/messages</code></td>
+              <td>Create a new message.</td>
+            </tr>
+            <tr>
+              <td>PUT</td>
+              <td><code>/api/messages/:id</code></td>
+              <td>Update an existing message.</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td><code>/api/messages/:id</code></td>
+              <td>Delete a message.</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/messages/:id/stats</code></td>
+              <td>Get analytics stats for a message.</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/auth/register</code></td>
+              <td>Register an admin user.</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/auth/login</code></td>
+              <td>Login an admin user.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="run">
+      <div class="section-title">
+        <span>18</span>
+        <div>
+          <h2>Run Locally</h2>
+          <p>Run the backend, portal and Android demo app locally.</p>
+        </div>
+      </div>
+
+      <div class="feature-columns">
+        <article>
+          <h3>Backend</h3>
+          <pre><code>cd backend
+npm install
+node server.js</code></pre>
+          <p>Optional health check: <code>http://localhost:3000/health</code></p>
+        </article>
+
+        <article>
+  <h3>Admin Portal</h3>
+  <pre><code>cd portal
+npm install
+npm run dev</code></pre>
+  <p>
+    Open the local Vite development URL shown in the terminal.
+  </p>
+  <p>
+    The portal connects to the backend API at:
+    <code>http://localhost:3000</code>
+  </p>
+</article>
+
+        <article>
+          <h3>Android Demo</h3>
+          <p>Open the Android project in Android Studio and update the demo base URL according to the environment. The SDK recreates its Retrofit client automatically when the base URL changes.</p>
+          <ul>
+            <li>Emulator: <code>http://10.0.2.2:3000/</code></li>
+            <li>Real device: <code>http://&lt;computer-ip&gt;:3000/</code></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <h2>NotifyFlow</h2>
+      <p>Android In-App Notifications SDK</p>
+    </div>
+
+    <p>Developed by <strong>Maayan Shani</strong></p>
+  </footer>
+</body>
+</html>

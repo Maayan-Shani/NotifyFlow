@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/nf_demo_background"
+    android:layoutDirection="ltr"
+    android:textDirection="ltr">
+
+    <LinearLayout
+        android:id="@+id/top_CONTENT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/nf_space_2xl"
+        android:paddingTop="@dimen/nf_space_2xl"
+        android:paddingRight="@dimen/nf_space_2xl"
+        android:paddingBottom="@dimen/nf_space_sm"
+        android:layoutDirection="ltr"
+        android:textDirection="ltr">
+
+        <TextView
+            android:id="@+id/title_TXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notifyflow_demo"
+            android:textSize="@dimen/nf_text_size_app_title"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/nf_space_lg"
+            android:layoutDirection="ltr"
+            android:textDirection="ltr" />
+
+        <TextView
+            android:id="@+id/subtitle_TXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/in_app_notifications_sdk_demo"
+            android:textSize="@dimen/nf_text_size_body_small"
+            android:textColor="@color/nf_text_secondary"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/nf_space_xl"
+            android:layoutDirection="ltr"
+            android:textDirection="ltr" />
+
+        <LinearLayout
+            android:id="@+id/config_CARD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/nf_surface"
+            android:padding="@dimen/nf_space_xl"
+            android:layout_marginBottom="@dimen/nf_space_md"
+            android:layoutDirection="ltr"
+            android:textDirection="ltr">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/demo_configuration"
+                android:textStyle="bold"
+                android:textSize="@dimen/nf_text_size_config_title"
+                android:textColor="@color/nf_text_primary"
+                android:gravity="left"
+                android:layout_marginBottom="@dimen/nf_space_md"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_id"
+                android:textStyle="bold"
+                android:textColor="@color/nf_text_label"
+                android:gravity="left"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr" />
+
+            <Spinner
+                android:id="@+id/user_SPINNER"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/nf_space_md"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/country"
+                android:textStyle="bold"
+                android:textColor="@color/nf_text_label"
+                android:gravity="left"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr" />
+
+            <Spinner
+                android:id="@+id/country_SPINNER"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/nf_space_md"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr" />
+
+            <TextView
+                android:id="@+id/sdk_status_TXT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sdk_loading"
+                android:textSize="@dimen/nf_text_size_body_small"
+                android:textColor="@color/nf_success"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/nf_space_xxs"
+                android:layout_marginBottom="@dimen/nf_space_md"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr" />
+
+            <Button
+                android:id="@+id/reset_views_BTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reset_demo_state"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragments_CONTAINER"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layoutDirection="ltr" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_NAV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/nf_demo_background"
+        android:layoutDirection="ltr"
+        android:textDirection="ltr"
+        app:menu="@menu/bottom_nav_menu" />
+
+</LinearLayout>

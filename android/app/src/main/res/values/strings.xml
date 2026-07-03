@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">NotifyFlow</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notifyflow_demo">NotifyFlow Demo</string>
+    <string name="in_app_notifications_sdk_demo">In-App Notifications SDK Demo</string>
+    <string name="demo_configuration">Demo Configuration</string>
+    <string name="user_id">User ID</string>
+    <string name="country">Country</string>
+    <string name="sdk_loading">SDK loading...</string>
+    <string name="reset_demo_state">Reset Demo State</string>
+    <string name="cart">Cart</string>
+    <string name="review_your_selected_items">Review your selected items</string>
+    <string name="your_cart_is_empty">Your cart is empty</string>
+    <string name="notifyflow_can_display_cart_related_messages_when_this_screen_is_opened">NotifyFlow can display cart-related messages when this screen is opened.</string>
+    <string name="cart_summary">Cart Summary</string>
+    <string name="items_0_nestimated_total_0_00_nscreen_key_cart_screen">Items: 0\nEstimated total: $0.00\nScreen key: cart_screen</string>
+    <string name="home">Home</string>
+    <string name="welcome_back_to_the_demo_app">Welcome back to the demo app</string>
+    <string name="today_s_updates">Today’s Updates</string>
+    <string name="notifyflow_can_show_personalized_in_app_messages_on_this_screen_based_on_targeting_rules">NotifyFlow can show personalized in-app messages on this screen based on targeting rules.</string>
+    <string name="alerts">ALERTS</string>
+    <string name="smart_alerts">Smart Alerts</string>
+    <string name="target">TARGET</string>
+    <string name="targeted">Targeted</string>
+    <string name="home_screen_key_home_screen">Home screen key: home_screen</string>
+    <string name="profile">Profile</string>
+    <string name="user_profile_and_preferences">User profile and preferences</string>
+    <string name="demo_user">Demo User</string>
+    <string name="connected_to_notifyflow_sdk">Connected to NotifyFlow SDK</string>
+    <string name="profile_details">Profile Details</string>
+    <string name="notifications_on_this_screen_are_triggered_using_the_profile_screen_key">Notifications on this screen are triggered using the profile_screen key.</string>
+    <string name="profile_screen_key_profile_screen">Profile screen key: profile_screen</string>
+</resources>

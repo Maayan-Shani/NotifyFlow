@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text Sizes -->
+    <dimen name="nf_text_size_app_title">26sp</dimen>
+    <dimen name="nf_text_size_screen_title">28sp</dimen>
+    <dimen name="nf_text_size_config_title">16sp</dimen>
+    <dimen name="nf_text_size_card_title_large">21sp</dimen>
+    <dimen name="nf_text_size_card_title">20sp</dimen>
+    <dimen name="nf_text_size_section_title">18sp</dimen>
+    <dimen name="nf_text_size_body">15sp</dimen>
+    <dimen name="nf_text_size_body_small">14sp</dimen>
+    <dimen name="nf_text_size_badge">13sp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="nf_space_xxs">4dp</dimen>
+    <dimen name="nf_space_xs">6dp</dimen>
+    <dimen name="nf_space_sm">8dp</dimen>
+    <dimen name="nf_space_md">10dp</dimen>
+    <dimen name="nf_space_lg">12dp</dimen>
+    <dimen name="nf_space_xl">14dp</dimen>
+    <dimen name="nf_space_2xl">16dp</dimen>
+    <dimen name="nf_space_3xl">18dp</dimen>
+    <dimen name="nf_space_4xl">22dp</dimen>
+    <dimen name="nf_space_screen">24dp</dimen>
+    <dimen name="nf_space_card_large">28dp</dimen>
+
+    <!-- Cards -->
+    <dimen name="nf_card_radius_large">22dp</dimen>
+    <dimen name="nf_card_radius_medium">18dp</dimen>
+    <dimen name="nf_card_elevation_medium">4dp</dimen>
+    <dimen name="nf_card_elevation_small">2dp</dimen>
+    <dimen name="nf_card_stroke_width">1dp</dimen>
+
+    <!-- Line Spacing -->
+    <dimen name="nf_line_spacing_regular">4dp</dimen>
+    <dimen name="nf_line_spacing_large">5dp</dimen>
+
+</resources>
