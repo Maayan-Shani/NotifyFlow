@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import com.example.notifyflowlibrary.model.MessageVariant
 import com.example.notifyflowlibrary.model.NotificationMessage
 import com.example.notifyflowlibrary.model.NotificationEvent
@@ -95,11 +94,6 @@ object NotifyFlow {
     private fun clearContextDependentState() {
         messages.clear()
         isNotificationShowing = false
-
-        Log.d(
-            TAG,
-            "SDK context changed. Loaded messages were cleared. Session screen keys are kept per user/country."
-        )
     }
 
     fun init(
@@ -111,7 +105,6 @@ object NotifyFlow {
         androidVersion: Int = Build.VERSION.SDK_INT
     ) {
         if (baseUrl.isBlank()) {
-            Log.e(TAG, "Cannot initialize NotifyFlow: baseUrl is blank")
             return
         }
 
@@ -135,16 +128,11 @@ object NotifyFlow {
         this.androidVersion = androidVersion
 
         notificationsController.setBaseUrl(baseUrl)
-
-        Log.d(TAG, "SDK initialized successfully")
-        Log.d(TAG, "SDK context configured. country=$country, androidVersion=$androidVersion")
     }
 
     fun fetchMessages() {
-        Log.d(TAG, "fetchMessages called")
 
         if (!isInitialized()) {
-            Log.e(TAG, "NotifyFlow is not initialized. Call init() first.")
             return
         }
 
@@ -159,7 +147,6 @@ object NotifyFlow {
             currentCountry == null ||
             currentAndroidVersion == null
         ) {
-            Log.e(TAG, "Cannot fetch messages: SDK data is missing")
             return
         }
 
@@ -174,44 +161,26 @@ object NotifyFlow {
                     messages.addAll(data)
 
                     saveMessagesToCache(data)
-
-                    Log.d(TAG, "Messages loaded from server into SDK: ${messages.size}")
                 }
 
                 override fun onError(message: String?) {
-                    Log.e(TAG, "Failed to fetch messages from server: $message")
-
-                    val loadedFromCache = loadMessagesFromCache()
-
-                    if (loadedFromCache) {
-                        Log.d(TAG, "Messages loaded from cache into SDK: ${messages.size}")
-                    } else {
-                        Log.e(TAG, "No cached messages available")
-                    }
+                    loadMessagesFromCache()
                 }
             }
         )
     }
 
     fun checkAndShow(activity: Activity, screenName: String) {
-        Log.d(TAG, "checkAndShow called for screen: $screenName")
 
         if (!isInitialized()) {
-            Log.e(TAG, "NotifyFlow is not initialized. Call init() first.")
             return
         }
 
         if (messages.isEmpty()) {
-            Log.d(
-                TAG,
-                "No messages available for current SDK context. " +
-                        "apiKey=$apiKey, userId=$userId, country=$country, androidVersion=$androidVersion"
-            )
             return
         }
 
         if (isNotificationShowing) {
-            Log.d(TAG, "Notification is already showing. Ignoring duplicate checkAndShow call.")
             return
         }
 
@@ -222,23 +191,10 @@ object NotifyFlow {
         val relevantMessage = findRelevantMessage(screenName)
 
         if (relevantMessage == null) {
-            Log.d(
-                TAG,
-                "No relevant message found for screen=$screenName, country=$country, androidVersion=$androidVersion"
-            )
             return
         }
 
         val selectedVariant = chooseVariant(relevantMessage)
-
-        Log.d(TAG, "Relevant message found: ${relevantMessage.id}")
-        Log.d(TAG, "Message type: ${relevantMessage.type}, category: ${relevantMessage.category}")
-
-        if (selectedVariant != null) {
-            Log.d(TAG, "Selected variant: ${selectedVariant.name}")
-        } else {
-            Log.d(TAG, "No variant selected. Using default message content")
-        }
 
         isNotificationShowing = true
 
@@ -252,7 +208,6 @@ object NotifyFlow {
             }
 
             else -> {
-                Log.d(TAG, "Unsupported message type: ${relevantMessage.type}")
                 isNotificationShowing = false
             }
         }
@@ -266,7 +221,6 @@ object NotifyFlow {
         val messageId = message.id
 
         if (messageId.isNullOrEmpty()) {
-            Log.e(TAG, "Cannot show popup. Message id is missing.")
             isNotificationShowing = false
             return
         }
@@ -274,8 +228,6 @@ object NotifyFlow {
         val titleToShow = variant?.title ?: message.title
         val bodyToShow = variant?.body ?: message.body
         val buttonTextToShow = variant?.buttonText ?: "Open"
-
-        Log.d(TAG, "Showing popup for message: $messageId")
 
         trackImpression(message, variant)
         incrementViewsCount(messageId)
@@ -287,7 +239,6 @@ object NotifyFlow {
 
         dialog.setOnDismissListener {
             isNotificationShowing = false
-            Log.d(TAG, "Popup dismissed. Notification lock released.")
         }
 
         val popupBackground = GradientDrawable().apply {
@@ -448,7 +399,6 @@ object NotifyFlow {
         val messageId = message.id
 
         if (messageId.isNullOrEmpty()) {
-            Log.e(TAG, "Cannot show banner. Message id is missing.")
             isNotificationShowing = false
             return
         }
@@ -456,8 +406,6 @@ object NotifyFlow {
         val titleToShow = variant?.title ?: message.title
         val bodyToShow = variant?.body ?: message.body
         val buttonTextToShow = variant?.buttonText ?: "Open"
-
-        Log.d(TAG, "Showing banner for message: $messageId")
 
         trackImpression(message, variant)
         incrementViewsCount(messageId)
@@ -491,7 +439,6 @@ object NotifyFlow {
             }
 
             isNotificationShowing = false
-            Log.d(TAG, "Banner dismissed. Notification lock released.")
         }
 
         val topRow = LinearLayout(activity).apply {
@@ -584,11 +531,6 @@ object NotifyFlow {
         val sessionScreenKey = getSessionScreenKey(screenName)
 
         if (shownScreenKeysInSession.contains(sessionScreenKey)) {
-            Log.d(
-                TAG,
-                "Screen $screenName ignored: a notification was already shown in current session " +
-                        "for userId=$userId, country=$country"
-            )
             return true
         }
 
@@ -597,18 +539,12 @@ object NotifyFlow {
 
     private fun markScreenAsShownInCurrentSession(screenName: String?) {
         if (screenName.isNullOrEmpty()) {
-            Log.d(TAG, "Cannot mark screen as shown: screenName is missing")
             return
         }
 
         val sessionScreenKey = getSessionScreenKey(screenName)
 
         shownScreenKeysInSession.add(sessionScreenKey)
-
-        Log.d(
-            TAG,
-            "Screen marked as shown in current session: screenName=$screenName, userId=$userId, country=$country"
-        )
     }
 
     private fun getPrefs(): SharedPreferences? {
@@ -625,12 +561,7 @@ object NotifyFlow {
     }
 
     private fun saveMessagesToCache(serverMessages: ArrayList<NotificationMessage>) {
-        val prefs = getPrefs()
-
-        if (prefs == null) {
-            Log.e(TAG, "Cannot save messages to cache: SharedPreferences is null")
-            return
-        }
+        val prefs = getPrefs() ?: return
 
         try {
             val json = gson.toJson(serverMessages)
@@ -638,20 +569,13 @@ object NotifyFlow {
             prefs.edit()
                 .putString(getMessagesCacheKey(), json)
                 .apply()
-
-            Log.d(TAG, "Messages saved to cache: ${serverMessages.size}")
         } catch (error: Exception) {
-            Log.e(TAG, "Failed to save messages to cache: ${error.message}")
+            return
         }
     }
 
     private fun loadMessagesFromCache(): Boolean {
-        val prefs = getPrefs()
-
-        if (prefs == null) {
-            Log.e(TAG, "Cannot load messages from cache: SharedPreferences is null")
-            return false
-        }
+        val prefs = getPrefs() ?: return false
 
         val json = prefs.getString(getMessagesCacheKey(), null)
 
@@ -668,7 +592,6 @@ object NotifyFlow {
 
             true
         } catch (error: Exception) {
-            Log.e(TAG, "Failed to load messages from cache: ${error.message}")
             false
         }
     }
@@ -693,34 +616,17 @@ object NotifyFlow {
             .putInt(getViewsKey(messageId), newCount)
             .apply()
 
-        Log.d(TAG, "Views count updated for messageId=$messageId: $newCount")
     }
 
     private fun canShowMessageByMaxViews(message: NotificationMessage): Boolean {
-        val messageId = message.id
-
-        if (messageId == null) {
-            Log.d(TAG, "Message ignored: messageId is null")
-            return false
-        }
+        val messageId = message.id ?: return false
 
         val currentViews = getViewsCount(messageId)
         val maxViews = message.maxViewsPerUser
 
         if (currentViews >= maxViews) {
-            Log.d(
-                TAG,
-                "Message $messageId ignored: max views reached. " +
-                        "currentViews=$currentViews, maxViewsPerUser=$maxViews"
-            )
             return false
         }
-
-        Log.d(
-            TAG,
-            "Message $messageId can be shown. " +
-                    "currentViews=$currentViews, maxViewsPerUser=$maxViews"
-        )
 
         return true
     }
@@ -729,7 +635,6 @@ object NotifyFlow {
         val prefs = getPrefs()
 
         if (prefs == null) {
-            Log.e(TAG, "Cannot reset views: SharedPreferences is null")
             return
         }
 
@@ -743,7 +648,6 @@ object NotifyFlow {
 
         shownScreenKeysInSession.clear()
 
-        Log.d(TAG, "NotifyFlow demo state was reset for testing")
     }
 
     private fun createEvent(
@@ -772,17 +676,13 @@ object NotifyFlow {
             eventType = EVENT_IMPRESSION
         )
 
-        Log.d(TAG, "Impression analytics request created: $event")
-
         notificationsController.sendImpression(
             event = event,
             callback = object : NotificationsController.MyCallback<Void?> {
                 override fun onSuccess(data: Void?) {
-                    Log.d(TAG, "Impression stats sent to server successfully")
                 }
 
                 override fun onError(message: String?) {
-                    Log.e(TAG, "Failed to send impression stats: $message")
                 }
             }
         )
@@ -798,17 +698,13 @@ object NotifyFlow {
             eventType = EVENT_CLICK
         )
 
-        Log.d(TAG, "Click analytics request created: $event")
-
         notificationsController.sendClick(
             event = event,
             callback = object : NotificationsController.MyCallback<Void?> {
                 override fun onSuccess(data: Void?) {
-                    Log.d(TAG, "Click stats updated successfully")
                 }
 
                 override fun onError(message: String?) {
-                    Log.e(TAG, "Failed to update click stats: $message")
                 }
             }
         )
@@ -844,7 +740,6 @@ object NotifyFlow {
         screenName: String
     ): Boolean {
         if (!message.active) {
-            Log.d(TAG, "Message ${message.id} ignored: not active")
             return false
         }
 
@@ -853,50 +748,22 @@ object NotifyFlow {
         }
 
         if (message.screenName != screenName) {
-            Log.d(
-                TAG,
-                "Message ${message.id} ignored: screen mismatch. " +
-                        "messageScreen=${message.screenName}, currentScreen=$screenName"
-            )
             return false
         }
 
-        val currentCountry = country
-        if (currentCountry == null) {
-            Log.d(TAG, "Message ${message.id} ignored: country is null")
-            return false
-        }
+        val currentCountry = country ?: return false
 
         if (!message.countries.contains(currentCountry)) {
-            Log.d(
-                TAG,
-                "Message ${message.id} ignored: country mismatch. " +
-                        "messageCountries=${message.countries}, currentCountry=$currentCountry"
-            )
             return false
         }
 
-        val currentAndroidVersion = androidVersion
-        if (currentAndroidVersion == null) {
-            Log.d(TAG, "Message ${message.id} ignored: androidVersion is null")
-            return false
-        }
+        val currentAndroidVersion = androidVersion ?: return false
 
         if (currentAndroidVersion < message.minAndroidVersion) {
-            Log.d(
-                TAG,
-                "Message ${message.id} ignored: android version too low. " +
-                        "current=$currentAndroidVersion, min=${message.minAndroidVersion}"
-            )
             return false
         }
 
         if (currentAndroidVersion > message.maxAndroidVersion) {
-            Log.d(
-                TAG,
-                "Message ${message.id} ignored: android version too high. " +
-                        "current=$currentAndroidVersion, max=${message.maxAndroidVersion}"
-            )
             return false
         }
 
@@ -928,15 +795,9 @@ object NotifyFlow {
                 val startDate = dateFormat.parse(startDateString)
 
                 if (startDate != null && today.before(startDate)) {
-                    Log.d(
-                        TAG,
-                        "Message ${message.id} ignored: campaign has not started yet. " +
-                                "startDate=$startDateString"
-                    )
                     return false
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Invalid startDate format for message ${message.id}: $startDateString")
                 return false
             }
         }
@@ -946,19 +807,12 @@ object NotifyFlow {
                 val endDate = dateFormat.parse(endDateString)
 
                 if (endDate != null && today.after(endDate)) {
-                    Log.d(
-                        TAG,
-                        "Message ${message.id} ignored: campaign has ended. " +
-                                "endDate=$endDateString"
-                    )
                     return false
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Invalid endDate format for message ${message.id}: $endDateString")
                 return false
             }
         }
-
         return true
     }
 }

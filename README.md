@@ -8,9 +8,7 @@ The SDK allows Android applications to show **Popup** and **Banner** messages th
 
 ## 🎥 Demo Video
 
-[![Watch Demo Video](https://img.shields.io/badge/▶%20Watch-Demo%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)]()
-
-ADD LINK INT README
+[![Watch Demo Video](https://img.shields.io/badge/▶%20Watch-Demo%20Video-8B5CF6?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/akNDc4mPfeQ)
 
 ---
 
@@ -107,15 +105,15 @@ ADD LINK INT README
 
 ## Tech Stack
 
-| Layer | Technologies |
-|---|---|
-| Android SDK | Kotlin, Retrofit, Gson, SharedPreferences |
-| Android Demo App | Kotlin, XML layouts, Bottom Navigation |
-| Backend | Node.js, Express.js, Mongoose |
-| Database | MongoDB Atlas |
-| Admin Portal | React, Vite, Recharts, CSS |
-| Authentication | bcryptjs |
-| Documentation | Markdown, Mermaid, GitHub Pages |
+| Layer            | Technologies                              |
+| ---------------- | ----------------------------------------- |
+| Android SDK      | Kotlin, Retrofit, Gson, SharedPreferences |
+| Android Demo App | Kotlin, XML layouts, Bottom Navigation    |
+| Backend          | Node.js, Express.js, Mongoose             |
+| Database         | MongoDB Atlas                             |
+| Admin Portal     | React, Vite, Recharts, CSS                |
+| Authentication   | bcryptjs                                  |
+| Documentation    | Markdown, Mermaid, GitHub Pages           |
 
 ---
 
@@ -169,11 +167,11 @@ The local `SharedPreferences Cache` belongs only to the Android app and is not c
 
 NotifyFlow uses MongoDB collections.
 
-| Collection | Purpose |
-|---|---|
-| `users` | Stores admin portal users |
-| `messages` | Stores notification campaigns and targeting rules |
-| `messagestats` | Stores aggregated analytics counters per message |
+| Collection     | Purpose                                           |
+| -------------- | ------------------------------------------------- |
+| `users`        | Stores admin portal users                         |
+| `messages`     | Stores notification campaigns and targeting rules |
+| `messagestats` | Stores aggregated analytics counters per message  |
 
 ---
 
@@ -231,12 +229,12 @@ erDiagram
 
 ### Main Database Models
 
-| Model | Purpose |
-|---|---|
-| `User` | Stores admin portal users for login and authentication |
-| `Message` | Stores notification campaigns, targeting rules, message content and optional A/B variants |
-| `MessageVariant` | Stores Variant A / Variant B content for A/B Testing |
-| `MessageStats` | Stores aggregated analytics counters such as impressions, clicks, country data and variant data |
+| Model            | Purpose                                                                                         |
+| ---------------- | ----------------------------------------------------------------------------------------------- |
+| `User`           | Stores admin portal users for login and authentication                                          |
+| `Message`        | Stores notification campaigns, targeting rules, message content and optional A/B variants       |
+| `MessageVariant` | Stores Variant A / Variant B content for A/B Testing                                            |
+| `MessageStats`   | Stores aggregated analytics counters such as impressions, clicks, country data and variant data |
 
 ## Server Analytics Efficiency
 
@@ -292,7 +290,6 @@ The analytics portal displays total impressions, total clicks, CTR and per-messa
 </table>
 
 ---
-
 
 ## Message Lifecycle State Diagram
 
@@ -449,11 +446,11 @@ NotifyFlow.checkAndShow(this, "home_screen")
 
 ### Demo App Screen Keys
 
-| Screen | Screen Key |
-|---|---|
-| Home | `home_screen` |
+| Screen  | Screen Key       |
+| ------- | ---------------- |
+| Home    | `home_screen`    |
 | Profile | `profile_screen` |
-| Cart | `cart_screen` |
+| Cart    | `cart_screen`    |
 
 When the user navigates between screens, the demo app calls:
 
@@ -484,11 +481,11 @@ NotifyFlow.checkAndShow(this, currentScreenName)
 
 ## Public SDK API
 
-| Function | Description |
-|---|---|
-| `NotifyFlow.init(...)` | Initializes the SDK with context, API key, user ID, country, backend URL and Android version |
-| `NotifyFlow.fetchMessages()` | Loads messages from the backend and saves them to local cache after a successful response |
-| `NotifyFlow.checkAndShow(activity, screenName)` | Checks if a relevant message exists for the current screen and displays it |
+| Function                                        | Description                                                                                  |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `NotifyFlow.init(...)`                          | Initializes the SDK with context, API key, user ID, country, backend URL and Android version |
+| `NotifyFlow.fetchMessages()`                    | Loads messages from the backend and saves them to local cache after a successful response    |
+| `NotifyFlow.checkAndShow(activity, screenName)` | Checks if a relevant message exists for the current screen and displays it                   |
 
 > `NotifyFlow.resetViewsForTesting()` is included in the demo app as a QA/testing helper for resetting local view counters and session state. It is not required for normal SDK usage.
 
@@ -496,16 +493,16 @@ NotifyFlow.checkAndShow(this, currentScreenName)
 
 The SDK internally handles:
 
-| Internal Logic | Description |
-|---|---|
-| Message filtering | Checks screen, country, Android version, active status and dates |
-| Max views | Prevents repeated display after the user reaches the configured limit for each specific message |
-| Session handling | Prevents repeated notifications on the same screen in the same app session |
-| A/B selection | Selects a stable variant based on user ID and message ID |
-| Multiple matching messages | Skips messages that already reached max views and continues to the next eligible message |
-| Impression tracking | Sends analytics when a message is displayed |
-| Click tracking | Sends analytics when the user clicks the message action |
-| Cache fallback | Loads cached messages if the backend is unavailable |
+| Internal Logic             | Description                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------- |
+| Message filtering          | Checks screen, country, Android version, active status and dates                                |
+| Max views                  | Prevents repeated display after the user reaches the configured limit for each specific message |
+| Session handling           | Prevents repeated notifications on the same screen in the same app session                      |
+| A/B selection              | Selects a stable variant based on user ID and message ID                                        |
+| Multiple matching messages | Skips messages that already reached max views and continues to the next eligible message        |
+| Impression tracking        | Sends analytics when a message is displayed                                                     |
+| Click tracking             | Sends analytics when the user clicks the message action                                         |
+| Cache fallback             | Loads cached messages if the backend is unavailable                                             |
 
 ---
 
@@ -513,15 +510,15 @@ The SDK internally handles:
 
 A message is displayed only when all relevant conditions match:
 
-| Rule | Description |
-|---|---|
-| Active status | Message must be ON |
-| Screen name | Message screen must match the current app screen |
-| Country | Current user country must be included in the message countries |
-| Android version | Current Android version must be between min and max |
-| Date range | Current date must be between start and end date |
-| Max views | User must not exceed `maxViewsPerUser` |
-| Session | The same screen should not show another notification in the same session |
+| Rule            | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| Active status   | Message must be ON                                                       |
+| Screen name     | Message screen must match the current app screen                         |
+| Country         | Current user country must be included in the message countries           |
+| Android version | Current Android version must be between min and max                      |
+| Date range      | Current date must be between start and end date                          |
+| Max views       | User must not exceed `maxViewsPerUser`                                   |
+| Session         | The same screen should not show another notification in the same session |
 
 ### Multiple Matching Messages
 
@@ -549,9 +546,9 @@ If A/B Testing is enabled:
 
 ### Example Categories
 
-| Category | Variant A | Variant B |
-|---|---|---|
-| Promotion | `20% Discount` / `Buy Now` | `Free Shipping` / `Use Benefit` |
+| Category             | Variant A                           | Variant B                       |
+| -------------------- | ----------------------------------- | ------------------------------- |
+| Promotion            | `20% Discount` / `Buy Now`          | `Free Shipping` / `Use Benefit` |
 | Feature Announcement | `New Feature Available` / `Try Now` | `Save Items Faster` / `Explore` |
 
 ### A/B Testing Portal Preview
@@ -576,7 +573,6 @@ If A/B Testing is enabled:
 </table>
 
 ---
-
 
 ## Cache Fallback
 
@@ -622,31 +618,31 @@ The SDK also reuses the existing Retrofit API client while the `baseUrl` remains
 
 ### SDK Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/sdk/messages` | Loads messages for the SDK |
-| `POST` | `/sdk/events/impression` | Reports an impression |
-| `POST` | `/sdk/events/click` | Reports a click |
+| Method | Endpoint                 | Description                |
+| ------ | ------------------------ | -------------------------- |
+| `GET`  | `/sdk/messages`          | Loads messages for the SDK |
+| `POST` | `/sdk/events/impression` | Reports an impression      |
+| `POST` | `/sdk/events/click`      | Reports a click            |
 
 ### Portal Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/messages` | Get all messages |
-| `POST` | `/api/messages` | Create a new message |
-| `PUT` | `/api/messages/:id` | Update an existing message |
-| `DELETE` | `/api/messages/:id` | Delete a message |
-| `GET` | `/api/messages/:id/stats` | Get analytics stats for a message |
-| `POST` | `/api/auth/register` | Register an admin user |
-| `POST` | `/api/auth/login` | Login an admin user |
+| Method   | Endpoint                  | Description                       |
+| -------- | ------------------------- | --------------------------------- |
+| `GET`    | `/api/messages`           | Get all messages                  |
+| `POST`   | `/api/messages`           | Create a new message              |
+| `PUT`    | `/api/messages/:id`       | Update an existing message        |
+| `DELETE` | `/api/messages/:id`       | Delete a message                  |
+| `GET`    | `/api/messages/:id/stats` | Get analytics stats for a message |
+| `POST`   | `/api/auth/register`      | Register an admin user            |
+| `POST`   | `/api/auth/login`         | Login an admin user               |
 
 ### `/sdk/messages` Query Parameters
 
-| Parameter | Description |
-|---|---|
-| `apiKey` | Project API key |
-| `userId` | Current user ID |
-| `country` | Current user country |
+| Parameter        | Description                 |
+| ---------------- | --------------------------- |
+| `apiKey`         | Project API key             |
+| `userId`         | Current user ID             |
+| `country`        | Current user country        |
 | `androidVersion` | Current Android SDK version |
 
 The screen name is passed to the SDK through:
@@ -807,10 +803,17 @@ NOTIFYFLOW_BASE_URL=http://10.0.2.2:3000/
 
 Use the relevant backend URL according to your environment:
 
-| Environment | Base URL |
-|---|---|
-| Android Emulator | `http://10.0.2.2:3000/` |
-| Real Android Device | `http://<computer-ip>:3000/` |
+```properties
+android/local.properties
+NOTIFYFLOW_BASE_URL=http://10.0.2.2:3000/
+```
+
+Use the relevant backend URL according to your environment:
+
+| Environment                 | Base URL                        |
+| --------------------------- | ------------------------------- |
+| Android Emulator            | `http://10.0.2.2:3000/`         |
+| Real Android Device         | `http://<computer-ip>:3000/`    |
 | Production / Hosted Backend | `https://your-backend-url.com/` |
 
 Run the app and use the demo controls:

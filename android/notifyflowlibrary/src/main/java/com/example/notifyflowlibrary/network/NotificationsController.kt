@@ -1,6 +1,5 @@
 package com.example.notifyflowlibrary.network
 
-import android.util.Log
 import com.example.notifyflowlibrary.model.NotificationEvent
 import com.example.notifyflowlibrary.model.NotificationMessage
 import com.google.gson.GsonBuilder
@@ -28,14 +27,11 @@ class NotificationsController {
         val normalizedBaseUrl = normalizeBaseUrl(baseUrl)
 
         if (this.baseUrl == normalizedBaseUrl && notificationsApi != null) {
-            Log.d(TAG, "Base URL already configured. Reusing existing Retrofit API: $normalizedBaseUrl")
             return
         }
 
         this.baseUrl = normalizedBaseUrl
         this.notificationsApi = null
-
-        Log.d(TAG, "Base URL configured: ${this.baseUrl}")
     }
 
     private fun normalizeBaseUrl(baseUrl: String): String {
@@ -70,8 +66,6 @@ class NotificationsController {
         val createdApi = retrofit.create(NotificationsApi::class.java)
 
         notificationsApi = createdApi
-
-        Log.d(TAG, "Retrofit API created for baseUrl: $currentBaseUrl")
 
         return createdApi
     }
@@ -111,7 +105,6 @@ class NotificationsController {
                     return
                 }
 
-                Log.d(TAG, "Messages loaded from server: ${messages.size}")
                 callback.onSuccess(messages)
             }
 
@@ -140,7 +133,6 @@ class NotificationsController {
                     return
                 }
 
-                Log.d(TAG, "Impression stats sent successfully")
                 callback?.onSuccess(null)
             }
 
@@ -169,7 +161,6 @@ class NotificationsController {
                     return
                 }
 
-                Log.d(TAG, "Click stats sent successfully")
                 callback?.onSuccess(null)
             }
 
