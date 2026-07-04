@@ -1,8 +1,30 @@
+<p align="center">
+  <img src="screenshots/logo.png" alt="NotifyFlow Logo" width="150" />
+</p>
+
 # NotifyFlow - Android In-App Notifications SDK
 
 NotifyFlow is an Android SDK for displaying dynamic in-app notifications without releasing a new app version.
 
 The SDK allows Android applications to show **Popup** and **Banner** messages that are managed remotely from a web admin portal. Messages can be targeted by screen, country, Android version, date range, status, and max views per user. NotifyFlow also supports optional A/B Testing, analytics tracking, and offline cache fallback.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin" />
+  <img src="https://img.shields.io/badge/Android-2E7D32?style=for-the-badge&logo=android&logoColor=white" alt="Android" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Express.js-111827?style=for-the-badge&logo=express&logoColor=white" alt="Express.js" />
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+</p>
+
+## Documentation
+
+Explore the full NotifyFlow documentation, setup guide, architecture and SDK usage.
+
+<a href="https://maayan-shani.github.io/NotifyFlow/">
+  <img src="https://img.shields.io/badge/Open%20Live%20Documentation-2563EB?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Open Live Documentation" />
+</a>
 
 ---
 
@@ -13,9 +35,6 @@ The SDK allows Android applications to show **Popup** and **Banner** messages th
 ---
 
 ## Screenshots
-
-> Screenshots are stored under the `screenshots/` folder.  
-> Some screenshots are already included below. Additional screenshots can be added later using the same file names.
 
 ### Portal Overview
 
@@ -116,8 +135,6 @@ The SDK allows Android applications to show **Popup** and **Banner** messages th
 | Documentation    | Markdown, Mermaid, GitHub Pages           |
 
 ---
-
-## System Architecture
 
 ## System Architecture
 
@@ -827,16 +844,6 @@ Run the app and use the demo controls:
 
 ---
 
-## Documentation
-
-Explore the full NotifyFlow documentation, setup guide, architecture and SDK usage.
-
-<a href="https://maayan-shani.github.io/NotifyFlow/">
-  <img src="https://img.shields.io/badge/Docs-Live%20Site-8B5CF6?style=flat-square&logo=githubpages&logoColor=white" alt="Live Documentation" />
-</a>
-
----
-
 ## 👩‍💻 Author
 
 <p align="center">
@@ -847,7 +854,7 @@ Explore the full NotifyFlow documentation, setup guide, architecture and SDK usa
   <a href="https://www.linkedin.com/in/maayan-shani-304269383/">
     <img src="https://img.shields.io/badge/LinkedIn-Maayan%20Shani-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
-  <a href="YOUR_GITHUB_LINK">
+  <a href="https://github.com/Maayan-Shani/NotifyFlow">
     <img src="https://img.shields.io/badge/GitHub-Maayan%20Shani-111827?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
   </a>
 </p>
