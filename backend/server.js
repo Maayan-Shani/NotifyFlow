@@ -16,9 +16,12 @@ app.use(express.json());
 mongoose
   .connect(process.env.MONGO_URI)
   .then(async () => {
+    console.log("Connected to MongoDB Atlas");
     await seedDemoMessages();
   })
-  .catch(() => {});
+  .catch((error) => {
+    console.error("Failed to connect to MongoDB Atlas", error.message);
+  });
 
 const demoMessages = [
   {
@@ -128,7 +131,9 @@ async function seedDemoMessages() {
     }
 
     await Message.insertMany(demoMessages);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Failed to seed demo messages:", error.message);
+    }
 }
 
 app.get("/health", (req, res) => {
@@ -600,4 +605,6 @@ app.get("/api/messages/:messageId/stats", async (req, res) => {
   }
 });
 
-app.listen(PORT, "0.0.0.0");
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`NotifyFlow backend is running on port ${PORT}`);
+});
