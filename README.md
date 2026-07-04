@@ -119,6 +119,8 @@ The SDK allows Android applications to show **Popup** and **Banner** messages th
 
 ## System Architecture
 
+## System Architecture
+
 ```mermaid
 flowchart LR
     Admin[Admin User] --> Portal[React Admin Portal]
@@ -825,23 +827,13 @@ Run the app and use the demo controls:
 
 ---
 
-## Documentation Site
+## Documentation
 
-A full HTML documentation site can be placed under:
+Explore the full NotifyFlow documentation, setup guide, architecture and SDK usage.
 
-```text
-docs/
-├── index.html
-└── style.css
-```
-
-Project screenshots can be stored separately under:
-
-```text
-screenshots/
-```
-
-GitHub Pages can publish the documentation directly from the repository.
+<a href="https://maayan-shani.github.io/NotifyFlow/">
+  <img src="https://img.shields.io/badge/Docs-Live%20Site-8B5CF6?style=flat-square&logo=githubpages&logoColor=white" alt="Live Documentation" />
+</a>
 
 ---
 
