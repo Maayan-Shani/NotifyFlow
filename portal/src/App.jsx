@@ -158,7 +158,6 @@ function App() {
         password: ""
       });
     } catch (error) {
-      console.error("Authentication failed", error.message);
       setAuthError(error.message);
     } finally {
       setAuthLoading(false);
@@ -192,7 +191,6 @@ function App() {
 
       setMessages(data);
     } catch (error) {
-      console.error("Failed to load messages", error);
       alert("Failed to load messages");
     } finally {
       setLoading(false);
@@ -223,7 +221,6 @@ function App() {
 
       setAnalyticsData(statsResults);
     } catch (error) {
-      console.error("Failed to load analytics", error);
       alert("Failed to load analytics");
     } finally {
       setAnalyticsLoading(false);
@@ -452,7 +449,6 @@ function App() {
         await loadAnalytics();
       }
     } catch (error) {
-      console.error("Failed to save message", error);
       alert("Failed to save message. Check if message id already exists.");
     }
   }
@@ -486,8 +482,6 @@ function App() {
         throw new Error("Failed to update message status");
       }
     } catch (error) {
-      console.error("Failed to update message status", error);
-
       setMessages(previousMessages);
 
       alert("Failed to update message status. Please try again.");
@@ -518,7 +512,6 @@ function App() {
         await loadAnalytics();
       }
     } catch (error) {
-      console.error("Failed to delete message", error);
       alert("Failed to delete message");
     }
   }

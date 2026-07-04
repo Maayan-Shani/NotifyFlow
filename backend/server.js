@@ -16,12 +16,9 @@ app.use(express.json());
 mongoose
   .connect(process.env.MONGO_URI)
   .then(async () => {
-    console.log("Connected to MongoDB Atlas");
     await seedDemoMessages();
   })
-  .catch((error) => {
-    console.error("Failed to connect to MongoDB Atlas", error.message);
-  });
+  .catch(() => {});
 
 const demoMessages = [
   {
@@ -127,16 +124,11 @@ async function seedDemoMessages() {
     const existingMessagesCount = await Message.countDocuments();
 
     if (existingMessagesCount > 0) {
-      console.log("Demo messages already exist in MongoDB");
       return;
     }
 
     await Message.insertMany(demoMessages);
-
-    console.log("Demo messages inserted into MongoDB");
-  } catch (error) {
-    console.error("Failed to seed demo messages", error.message);
-  }
+    } catch (error) {}
 }
 
 app.get("/health", (req, res) => {
@@ -191,8 +183,6 @@ app.post("/api/auth/register", async (req, res) => {
       }
     });
   } catch (error) {
-    console.error("Failed to register user", error.message);
-
     res.status(500).json({
       message: "Failed to register user"
     });
@@ -236,8 +226,6 @@ app.post("/api/auth/login", async (req, res) => {
       }
     });
   } catch (error) {
-    console.error("Failed to login user", error.message);
-
     res.status(500).json({
       message: "Failed to login user"
     });
@@ -280,14 +268,6 @@ function buildActiveDateRangeQuery(todayDate) {
 app.get("/sdk/messages", async (req, res) => {
   try {
     const { apiKey, userId, country, androidVersion } = req.query;
-
-    console.log("GET /sdk/messages", {
-      apiKey,
-      userId,
-      country,
-      androidVersion
-    });
-
     const numericAndroidVersion = Number(androidVersion);
     const todayDate = getTodayDateString();
 
@@ -307,13 +287,8 @@ app.get("/sdk/messages", async (req, res) => {
 
     const messages = await Message.find(query).sort({ createdAt: 1 });
 
-    console.log("SDK date filter today:", todayDate);
-    console.log("Filtered SDK messages count:", messages.length);
-
     res.json(messages);
   } catch (error) {
-    console.error("Failed to load messages", error.message);
-
     res.status(500).json({
       message: "Failed to load messages"
     });
@@ -328,8 +303,6 @@ app.get("/api/messages", async (req, res) => {
 
     res.json(messages);
   } catch (error) {
-    console.error("Failed to load admin messages", error.message);
-
     res.status(500).json({
       message: "Failed to load messages"
     });
@@ -344,8 +317,6 @@ app.post("/api/messages", async (req, res) => {
 
     res.status(201).json(newMessage);
   } catch (error) {
-    console.error("Failed to create message", error.message);
-
     res.status(500).json({
       message: "Failed to create message"
     });
@@ -374,8 +345,6 @@ app.put("/api/messages/:id", async (req, res) => {
 
     res.json(updatedMessage);
   } catch (error) {
-    console.error("Failed to update message", error.message);
-
     res.status(500).json({
       message: "Failed to update message"
     });
@@ -406,8 +375,6 @@ app.delete("/api/messages/:id", async (req, res) => {
       deletedStatsCount: deletedStatsResult.deletedCount
     });
   } catch (error) {
-    console.error("Failed to delete message", error.message);
-
     res.status(500).json({
       message: "Failed to delete message"
     });
@@ -458,8 +425,6 @@ app.post("/sdk/events/impression", async (req, res) => {
   try {
     const event = req.body;
 
-    console.log("POST /sdk/events/impression", event);
-
     const eventToSave = {
       messageId: event.messageId,
       variantId: event.variantId,
@@ -475,8 +440,6 @@ app.post("/sdk/events/impression", async (req, res) => {
   });
     
   } catch (error) {
-    console.error("Failed to update impression stats", error.message);
-
     res.status(500).json({
       message: "Failed to update impression stats"
     });
@@ -486,8 +449,6 @@ app.post("/sdk/events/impression", async (req, res) => {
 app.post("/sdk/events/click", async (req, res) => {
   try {
     const event = req.body;
-
-    console.log("POST /sdk/events/click", event);
 
     const eventToSave = {
       messageId: event.messageId,
@@ -504,8 +465,6 @@ app.post("/sdk/events/click", async (req, res) => {
       message: "Click stats updated"
     });
   } catch (error) {
-    console.error("Failed to update click stats", error.message);
-
     res.status(500).json({
       message: "Failed to update click stats"
     });
@@ -635,8 +594,6 @@ app.get("/api/messages/:messageId/stats", async (req, res) => {
       mostClickedVariant
     });
   } catch (error) {
-    console.error("Failed to calculate message stats", error.message);
-
     res.status(500).json({
       message: "Failed to calculate message stats"
     });
